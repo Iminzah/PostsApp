@@ -21,4 +21,8 @@ class PostViewModel(val postsRepository: PostsRepository) : ViewModel() {
             }
         }
     }
+
+    fun getDbPosts(){
+
+    }
 }

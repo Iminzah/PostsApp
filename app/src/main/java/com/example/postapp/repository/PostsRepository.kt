@@ -14,4 +14,12 @@ class PostsRepository() {
         val response = apiClient.getPosts()
         return@withContext response
     }
+    suspend fun savePosts(Postslist:list<Posts>)= withContext
+    val database=PostsAppDatabase.getDbInstance(PostApp.appContext)
+    postslist.forEach{
+        database.PostsDao().insertPost(post)
+        }
+    }
+
+
 }
