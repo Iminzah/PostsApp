@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.postsapp.repository.CommentsRepository
 import com.example.postsapp.viewmodel.CommentsViewModel
 import com.example.postsapp.viewmodel.CommentsViewModelFactory
-import kotlinx.android.synthetic.main.activity_comments.*
+import kotlinx.android.synthetic.main.activity_comment.*
 
-class CommentsActivity : AppCompatActivity() {
+class CommentActivity : AppCompatActivity() {
     lateinit var commentsViewModel: CommentsViewModel
     lateinit var commentsViewModelFactory: CommentsViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_comments)
+        setContentView(R.layout.activity_comment)
 
         val commentsRepository= CommentsRepository()
         commentsViewModelFactory= CommentsViewModelFactory(commentsRepository)
@@ -26,7 +26,7 @@ class CommentsActivity : AppCompatActivity() {
 
         commentsViewModel.getPosts()
 
-        commentsViewModel.commentsLiveData.observe(this, Observer { commentsList->
+        commentsViewModel.commentsLiveData.observe(this, Observe { commentsList->
             rvComments.apply{
                 layoutManager= LinearLayoutManager(this@CommentsActivity)
                 hasFixedSize()
@@ -34,7 +34,7 @@ class CommentsActivity : AppCompatActivity() {
             }
             Toast.makeText(baseContext,"${commentsList.size} comments fetched", Toast.LENGTH_LONG).show()
         })
-        commentsViewModel.commentsFailedLiveData.observe(this, Observer { error->
+        commentsViewModel.commentsFailedLiveData.observe(this, Observe { error->
             Toast.makeText(baseContext,error, Toast.LENGTH_LONG).show()
         })
 

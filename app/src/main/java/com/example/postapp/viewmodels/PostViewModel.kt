@@ -1,5 +1,6 @@
 package com.example.postapp.viewmodels
 
+import android.security.identity.AccessControlProfileId
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,6 +24,11 @@ class PostViewModel(val postsRepository: PostsRepository) : ViewModel() {
     }
 
     fun getDbPosts(){
+        postsLiveData=postsRepository.getDbPosts()
 
+    }
+
+    fun getPostsById(postId:Int){
+        postByIdLiveData= postsRepository.getPostById(postId)
     }
 }
